@@ -1,0 +1,5 @@
+node_modules/
+dist/
+app/libs/
+app/css/
+app/js/libs.min.js
