@@ -1,5 +1,5 @@
 node_modules/
 dist/
-app/libs/
-app/css/
-app/js/libs.min.js
+src/vendors/
+src/css/
+src/js/vendors.min.js
