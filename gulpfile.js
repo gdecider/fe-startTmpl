@@ -14,7 +14,7 @@ var cache       = require('gulp-cache');
 var autoprefixer= require('gulp-autoprefixer');
 var sourcemaps  = require('gulp-sourcemaps');
 
-var srcPath = './app';
+var srcPath = './src';
 var distPath = './dist';
 
 // обработка sass
@@ -52,7 +52,7 @@ gulp.task('minify-css', ['sass'], function(){
 gulp.task('sync', function(){
 	browserSync({
 		server: {
-			baseDir: srcPath,
+			baseDir: './src',
 		},
 		notify: false
 	});
@@ -109,3 +109,6 @@ gulp.task('build', ['clean', 'minify-css', 'scripts', 'img'], function(){
 	])
 	.pipe(gulp.dest(distPath));
 });
+
+// The default task (called when you run `gulp` from cli)
+gulp.task('default', ['watch']);
