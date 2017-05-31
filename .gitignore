@@ -1,5 +1,2 @@
 node_modules/
 dist/
-src/vendors/
-src/css/
-src/js/vendors.min.js

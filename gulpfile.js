@@ -13,16 +13,36 @@ var pngquant    = require('imagemin-pngquant');
 var cache       = require('gulp-cache');
 var autoprefixer= require('gulp-autoprefixer');
 var sourcemaps  = require('gulp-sourcemaps');
+var plumber     = require('gulp-plumber');
+var notify      = require('gulp-notify');
 
 var srcPath = './src';
 var distPath = './dist';
 
+// ф-я для перехвата ошибок
+var onError = function (err) {
+    notify({
+         title: 'Gulp Task Error',
+         message: '!!!ERROR!!! Check the console.'
+     }).write(err);
+
+     console.log(err.toString());
+     
+     this.emit('end');
+}
+
 // обработка sass
 gulp.task('sass', function(){
 	return gulp.src(srcPath + '/sass/**/*.+(sass|scss)')
+			.pipe(plumber({ errorHandle: onError }))
 			.pipe(sass())
+			.on('error', onError)
 			.pipe(autoprefixer(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], {cascade: true}))
 			.pipe(gulp.dest(srcPath + '/css'))
+			.pipe(notify({
+		        title   : 'Gulp Task Complete',
+		        message : 'Styles have been compiled'
+		    }))
 			.pipe(browserSync.reload({stream: true}));
 });
 
@@ -39,7 +59,8 @@ gulp.task('scripts', function(){
 // uglify css libs
 gulp.task('minify-css', ['sass'], function(){
 	return gulp.src([
-		srcPath + '/css/**/*.css',		
+		srcPath + '/css/**/*.css',
+		'!'+srcPath + '/css/**/*.min.css',
 	])
 	.pipe(sourcemaps.init())
 	.pipe(cleanCss())
