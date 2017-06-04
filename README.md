@@ -1,19 +1,45 @@
 # Стартовый шаблон для верстки
 
+## Настройка среды 
+
+### Установка node.js и npm
+
+[источник](https://www.digitalocean.com/community/tutorials/node-js-ubuntu-16-04-ru)
+
+7.x - меняем на нужную версию (Пример: 4.x, 6.x, 7.x)
+
+``` bash
+cd ~
+curl -sL https://deb.nodesource.com/setup_7.x -o nodesource_setup.sh
+sudo bash nodesource_setup.sh
+sudo apt-get install nodejs
+sudo apt-get install build-essential
+```
+
+### [Установка yarn](https://yarnpkg.com/lang/en/docs/install/)
+
+```bash
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+
+sudo apt-get update && sudo apt-get install yarn
+```
+
 ## Получение шаблона и начало работы с ним
 
 * Склонируйте или [скачайте](https://github.com/gdecider/fe-startTmpl/archive/master.zip) репозиторий в нужную папку
 
 ```bash
 cd <project-folder>
-git clone git@github.com:gdecider/fe-startTmpl.git .
+git clone https://github.com/gdecider/fe-startTmpl.git .
+git submodule init
+git submodule update
 ```
 
 * Получите компоненты от которых зависит работа шаблона
 
 ```bash
-npm i
-bower i
+yarn
 ```
 
 ## Команды для запуска вотчеров
