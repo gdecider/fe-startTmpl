@@ -1,0 +1,3 @@
+[submodule "src/sass/parts/bootstrap-grid-only"]
+	path = src/sass/parts/bootstrap-grid-only
+	url = https://github.com/gdecider/Bootstrap-grid-only.git
