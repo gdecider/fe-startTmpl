@@ -20,6 +20,7 @@ var bsreload    = browserSync.reload;
 
 var srcPath = './src';
 var distPath = './dist';
+var vendorsPath = './node_modules';
 
 // === NEW
 var path = {
@@ -55,10 +56,10 @@ var path = {
 	},
 	vendor: {
 		js: [
-			srcPath + '/vendors/jquery/dist/jquery.min.js',
+			vendorsPath + '/jquery/dist/jquery.min.js',
 		],
 		css: [
-			//srcPath + '/vendors/vendor-name/some.css',
+			//vendorsPath + '/vendor-name/path-to/some.css',
 		],
 		jsFileName: 'vendors.min.js',
 		cssFileName: 'vendors.min.css',
