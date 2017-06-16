@@ -59,10 +59,15 @@ var path = {
 			vendorsPath + '/jquery/dist/jquery.min.js',
 		],
 		css: [
+			srcPath + '/css/vendors/**/*',
 			//vendorsPath + '/vendor-name/path-to/some.css',
+		],
+		sass: [
+			vendorsPath + '/bootstrap-sass-grid/sass/bootstrap-sass-grid.scss',
 		],
 		jsFileName: 'vendors.min.js',
 		cssFileName: 'vendors.min.css',
+		sassTmpFolder: 'vendors',
 	}
 };
 
@@ -111,7 +116,7 @@ gulp.task('default', ['build']);
 
 // TASK pre-build
 gulp.task('pre-build', [
-	'vendor:clean', 'vendor:js', 'vendor:css',
+	'vendor:js', 'vendor:css:after',
 	'assets:sass', 'assets:js',
 ]);
 
@@ -151,7 +156,7 @@ gulp.task('vendor:clean', function(){
 });
 
 // TASK vendor:js
-gulp.task('vendor:js', function(){
+gulp.task('vendor:js', ['vendor:clean'], function(){
 	return gulp.src(path.vendor.js)
 		.pipe(concat(path.vendor.jsFileName))
 		.pipe(uglify())
@@ -159,14 +164,36 @@ gulp.task('vendor:js', function(){
 		//.pipe(bsreload({stream: true}));
 });
 
+// TASK vendor:sass
+gulp.task('vendor:sass', function(){
+	return gulp.src(path.vendor.sass)
+		.pipe(plumber({ errorHandle: onError }))
+		.pipe(sass())
+		.on('error', onError)
+		.pipe(autoprefixer(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], {cascade: true}))
+		.pipe(gulp.dest(path.sass.dest+'/'+path.vendor.sassTmpFolder))
+		.pipe(notify({
+	        title   : 'Gulp Task Complete',
+	        message : 'Vendor Styles have been compiled'
+	    }))
+		.pipe(bsreload({stream: true}));
+});
+
 // TASK vendor:css
-gulp.task('vendor:css', function(){
+gulp.task('vendor:css', ['vendor:clean', 'vendor:sass'], function(){
 	return gulp.src(path.vendor.css)
-	.pipe(sourcemaps.init())
-	.pipe(concat(path.vendor.cssFileName))
-	.pipe(cleanCss())
-	.pipe(sourcemaps.write())
-	.pipe(gulp.dest(path.css.dest));
+		.pipe(sourcemaps.init())
+		.pipe(concat(path.vendor.cssFileName))
+		.pipe(cleanCss())
+		.pipe(sourcemaps.write())
+		.pipe(gulp.dest(path.css.dest));
+});
+
+// TASK vendor:css:after
+gulp.task('vendor:css:after', ['vendor:css'], function(){
+	return del.sync([
+		path.sass.dest+'/'+path.vendor.sassTmpFolder
+	]);
 });
 
 // TASK assets:sass
@@ -199,13 +226,13 @@ gulp.task('assets:js', function(){
 // TASK assets:img minify
 gulp.task('assets:img', function(){
 	return gulp.src(path.img.src)
-	.pipe(cache(imagemin({
-		interlaced: true,
-		progressive: true,
-		svgoPluggins: [{removeViewBox: false}],
-		use: [pngquant()]
-	})))
-	.pipe(gulp.dest(path.img.dist));
+		.pipe(cache(imagemin({
+			interlaced: true,
+			progressive: true,
+			svgoPluggins: [{removeViewBox: false}],
+			use: [pngquant()]
+		})))
+		.pipe(gulp.dest(path.img.dist));
 });
 
 // === OLD

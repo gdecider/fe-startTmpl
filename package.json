@@ -27,6 +27,7 @@
     "imagemin-pngquant": "^5.0.0"
   },
   "dependencies": {
+    "bootstrap-sass-grid": "^4.0.1",
     "jquery": "^3.2.1"
   }
 }
