@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@fancyapps/fancybox@^3.2.5":
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/@fancyapps/fancybox/-/fancybox-3.3.1.tgz#78a5e5adfcdbb416152912a5592a7726d9a8002d"
+
 "@gulp-sourcemaps/identity-map@1.X":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@gulp-sourcemaps/identity-map/-/identity-map-1.0.1.tgz#cfa23bc5840f9104ce32a65e74db7e7a974bbee1"
@@ -328,9 +332,9 @@ boom@2.x.x:
   dependencies:
     hoek "2.x.x"
 
-bootstrap-sass-grid@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/bootstrap-sass-grid/-/bootstrap-sass-grid-4.0.1.tgz#2be57e7d076c4c20cf00bcb04dd83dc32da5ac59"
+bootstrap-4-grid@^2.1.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/bootstrap-4-grid/-/bootstrap-4-grid-2.3.0.tgz#6aca109703eb052545a88a52f6518b429bbecd95"
 
 brace-expansion@^1.0.0, brace-expansion@^1.1.7:
   version "1.1.7"
@@ -3571,6 +3575,10 @@ sigmund@~1.0.0:
 signal-exit@^3.0.0:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
+
+slick-carousel@^1.8.1:
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/slick-carousel/-/slick-carousel-1.8.1.tgz#a4bfb29014887bb66ce528b90bd0cda262cc8f8d"
 
 sntp@1.x.x:
   version "1.0.9"

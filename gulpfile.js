@@ -57,13 +57,18 @@ var path = {
 	vendor: {
 		js: [
 			vendorsPath + '/jquery/dist/jquery.min.js',
+			vendorsPath + '/slick-carousel/slick/slick.js',
+			vendorsPath + '/@fancyapps/fancybox/dist/jquery.fancybox.js',
 		],
 		css: [
 			srcPath + '/css/vendors/**/*',
+			vendorsPath + '/slick-carousel/slick/slick.css',
+			vendorsPath + '/@fancyapps/fancybox/dist/jquery.fancybox.css',
 			//vendorsPath + '/vendor-name/path-to/some.css',
 		],
 		sass: [
-			vendorsPath + '/bootstrap-sass-grid/sass/bootstrap-sass-grid.scss',
+			srcPath + '/sass-vendors/bootstrap4-grid.scss',
+			//vendorsPath + '/vendor-name/path-to/some.scss',
 		],
 		jsFileName: 'vendors.min.js',
 		cssFileName: 'vendors.min.css',

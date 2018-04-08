@@ -27,7 +27,9 @@
     "imagemin-pngquant": "^5.0.0"
   },
   "dependencies": {
-    "bootstrap-sass-grid": "^4.0.1",
-    "jquery": "^3.2.1"
+    "jquery": "^3.2.1",
+    "@fancyapps/fancybox": "^3.2.5",
+    "bootstrap-4-grid": "^2.1.0",
+    "slick-carousel": "^1.8.1"
   }
 }
