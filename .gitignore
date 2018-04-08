@@ -1,2 +1,4 @@
 node_modules/
 dist/
+src/js/vendors.min.js
+src/css/vendors.min.css
